@@ -1,6 +1,10 @@
+#!/usr/bin/python3
+"""Returning the status of the api"""
 from api.v1.views import app_views
-import jsonify
+from flask import jsonify
+
 
 @app_views.route("/status", methods=['GET'])
 def index():
-	return jsonify({"status": "OK"})
+    """Returning status of api"""
+    return jsonify({"status": "OK"})
