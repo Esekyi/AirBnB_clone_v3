@@ -1,4 +1,4 @@
-from flask import Flask, Blueprints
+from flask import Flask, Blueprint
 from models import storage
 from api.v1.views import app_views
 import os
