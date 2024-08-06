@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+"""configurations file for setting up api and flask-blueprint"""
 from flask import Flask, Blueprint
 from models import storage
 from api.v1.views import app_views
@@ -13,7 +15,7 @@ def teardown_db(exception):
     """
     This function will be called after each request
     to close the database connection.
-    
+
     Args:
         exception: An optional exception object if one occurred.
     """
