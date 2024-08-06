@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """configurations file for setting up api and flask-blueprint"""
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, jsonify
 from models import storage
 from api.v1.views import app_views
 import os
@@ -20,6 +20,12 @@ def teardown_db(exception):
         exception: An optional exception object if one occurred.
     """
     storage.close()
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    """Error handle to redirect 404 status code"""
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == "__main__":
