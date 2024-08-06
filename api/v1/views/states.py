@@ -3,7 +3,7 @@
 from api.v1.views import app_views
 from models import storage
 from models.state import State
-from flask import jsonify, abort
+from flask import jsonify, abort, request
 
 
 @app_views.route("/states", methods=["GET"], strict_slashes=False)
@@ -27,7 +27,8 @@ def get_state(state_id):
     return jsonify(state.to_dict())
 
 
-@app_views.route("/states/<state_id>", methods=["DELETE"], strict_slashes=False)
+@app_views.route("/states/<state_id>", methods=["DELETE"],
+                 strict_slashes=False)
 def del_state(state_id):
     """Deletes a states with the <state_id>"""
     state = storage.get(State, state_id)
@@ -36,3 +37,40 @@ def del_state(state_id):
     storage.delete(state)
     storage.save()
     return jsonify({}), 200
+
+
+@app_views.route("/states", methods=["POST"], strict_slashes=False)
+def add_state():
+    """Adds a state to db"""
+    body = request.get_data()
+    if not request.get_json():
+        abort(404, description="Not a JSON")
+    data = request.get_json(body)
+    if not data.get("name"):
+        abort(404, description="Missing name")
+
+    new_state = State(name=data.get("name"))
+    storage.new(new_state)
+    new_state.save()
+
+    return jsonify(new_state.to_dict()), 201
+
+
+@app_views.route("/states/<state_id>", methods=["PUT"],
+                 strict_slashes=False)
+def update_state(state_id):
+    """UPDATES a state with ID <state_id>"""
+    state = storage.get(State, state_id)
+    if not state:
+        abort(404)
+    body = request.get_data()
+    if not request.get_json():
+        abort(404, description="Not a JSON")
+    data = request.get_json(body)
+    if not data.get("name"):
+        abort(404)
+    else:
+        setattr(state, "name", data.get("name"))
+
+    storage.save()
+    return jsonify(state.to_dict()), 200
