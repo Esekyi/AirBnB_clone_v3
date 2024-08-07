@@ -2,9 +2,9 @@
 * [Environment](#environment)
 * [Installation](#installation)
 * [File Descriptions](#file-descriptions)
-* [Usage](#usage)
+* [Usage](#)
 * [Examples of use](#examples-of-use)
-* [](#airbnb-clone---restful-api)
+* [Restful API](#airbnb-clone---restful-api)
 * [Bugs](#bugs)
 * [Authors](#authors)
 * [License](#license)
@@ -152,14 +152,23 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 ```
 # AirBnB Clone - Restful API
-`Python` `Back-end` `API` `Webserver` `Flask`
+`Python` `Back-end` `API` `Webserver` `Flask`  
+
+## Create a Virtual Environment
+In order to run the API, you'd need to add a venv of packages  
+`python3 -m venv .venv`
+
+## Install Flask and other Dependencies
+run this command in the root directory
+`pip3 install -r requirements.txt`
+
 
 ## Bugs
 No known bugs at this time. 
 
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)  
 Emmanuel Sekyi - [Github](https://github.com/Esekyi)
 
 
